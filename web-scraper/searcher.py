@@ -4,11 +4,9 @@ import errno
 import logging
 import os
 import re
-import urllib
 from difflib import SequenceMatcher
 from typing import List
 
-import httplib2
 import pandas as pd
 import scrapy
 import scrapy.crawler as crawler
@@ -16,24 +14,6 @@ import vk
 from goose3 import Goose
 from scrapy.linkextractors.lxmlhtml import LxmlLinkExtractor
 from tqdm import tqdm
-
-
-def get_server_status_code(url):
-    host, path = urllib.urlparse(url)[1:3]
-    try:
-        conn = httplib2.HTTPConnection(host)
-        conn.request('HEAD', path)
-        return conn.getresponse().status
-    except StandardError:
-        return None
- 
-def check_url(url):
-    good_codes = [httplib2.OK, httplib2.FOUND, httplib2.MOVED_PERMANENTLY]
-
-    print(url)
-    print(get_server_status_code(url))
-    return get_server_status_code(url) in good_codes
-
 
 
 def ask_user(question: str) -> bool:
@@ -58,7 +38,7 @@ def search_vk_groups(request: str, vk_token: str, stop_urls: List[str] = []) -> 
     session = vk.Session(access_token=vk_token)
     vk_api = vk.API(session)
 
-    count = 1000
+    count = 500
     moscow_id = 1
     res = vk_api.groups.search(v=6.0, q=request,
                                type='group',
@@ -102,12 +82,12 @@ if __name__ == "__main__":
               'zoon', 'zoom', 'news', 'vk.com', 'facebook',
               'vkontakte.ru',
               'instagram', 'tripadvisor', 'fb', 'avito',
-              'pikabu', 'pinterest', 'ebay', 'vk.cc', 'Vk.', 'Vkontakte', 'VK.']
+              'pikabu', 'pinterest', 'ebay']
 
     key_words = ['', 'школа', 'секция', 'хобби', 'студия',
              'уроки', 'занятия', 'учёба', 'обучение',
              'тренировки', 'тренинг', 'мастер класс', 'класс', 
-             'тренер', 'центр', 'зал', 'онлайн', 'репетитор']
+             'тренер']
 
 
     args = parser.parse_args()
@@ -123,6 +103,7 @@ if __name__ == "__main__":
 
     urls = list(set(urls))
 
+    print(len(urls))
     urls = pd.DataFrame(urls, columns=['urls'])
 
     create_file(args.output)

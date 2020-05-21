@@ -16,7 +16,7 @@ logging.getLogger('scrapy').propagate = False
 class Scraper(object):
 
     def __init__(self, data: pd.DataFrame, reject: list = [],
-                 vk_token: str = '', url_column_name = 'Сайт') -> None:
+                 vk_token: str = '') -> None:
         '''
         Инициализатор класса.
         data --- датафрейм с колонкой 'Сайт'
@@ -24,12 +24,12 @@ class Scraper(object):
         vk_token --- token для vk_api
         '''
 
-        for i in range(data[url_column_name].size):
-            if 'http' not in str(data[url_column_name][i]):
-                data[url_column_name][i] = 'http://' + str(data[url_column_name][i])
+        for i in range(data['Сайт'].size):
+            if 'http' not in str(data['Сайт'][i]):
+                data['Сайт'][i] = 'http://' + str(data['Сайт'][i])
 
         # обрабатываемы адреса
-        self.urls = data[url_column_name]
+        self.urls = data['Сайт']
         # исходный датафрейм
         self.data = data
         # стоп-слова
@@ -222,21 +222,6 @@ class Scraper(object):
             title = self.goose.extract(url=str(response.url)).title
             self.path[self.start_urls[0]]['title'].append(title)
 
-        def start_requests(self):
-            # 10 seconds for first url
-
-            # print(self.reject)
-            # print(self.start_urls[0])
-
-            flag = True
-            for word in self.reject:
-                if word in self.start_urls[0]:
-                    flag = False
-                    break
-            # print(flag)
-            if flag:
-                yield scrapy.Request(self.start_urls[0], callback=self.parse)
-
         def parse(self, response):
             '''
             Основная функция, обрабатывающая главную страницу сайта.
@@ -257,25 +242,18 @@ class Scraper(object):
 
             # обработка ссылок
             for link in links:
-                flag = True
-
                 for word in self.key_words:
                     if word in link:
                         self.path[self.start_urls[0]][word].append(link)
-                        flag = False
 
-                for word in self.reject:
-                    if word in link:
-                        flag = False
-
-                if flag:
+                if 't.me' not in link:
                     corr_links.append(link)
 
             corr_links = list(tuple(corr_links))
 
             # запуск парснга кода страниц
             for link in corr_links:
-                yield scrapy.Request(url=link, callback=self.parse_link, meta={'donwload_timeout': 60})
+                yield scrapy.Request(url=link, callback=self.parse_link)
 
         def parse_link(self, response):
             '''
