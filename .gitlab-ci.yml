@@ -8,7 +8,7 @@ before_script:
 testing:
   script:
     - echo running tests...
-    - pytest ./web-scraper/metrics/preprocessor.py ./web-scraper/metrics/metrics.py ./web-scraper/scraper.py ./web_scraper/tests
+    - pytest ./web-scraper/metrics/preprocessor.py ./web-scraper/metrics/metrics.py ./web-scraper/scraper.py ./web-scraper/tests/.
   stage: test
 
 # stages list
