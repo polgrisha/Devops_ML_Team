@@ -3,6 +3,7 @@ packages:
         - names:
             - python-pip
             - python3-pip
+            - git
 
 
 pip_packages:
