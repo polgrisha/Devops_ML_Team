@@ -4,20 +4,12 @@ before_script:
   - ls -la
   - pip install -r ./vm/salt/requirements.txt
 
-# stage for build external libs
-preparing:
-  script:
-    - echo preparing job...
-  stage: build
-
 # unittest stage
 testing:
   script:
     - echo running tests...
-    - echo running ...
+    -find ~/ -name "pytest"
     - /env/bin/pytest web-scraper/metrics/preprocessor.py
-    - echo running GAME TESTS...
-    - python3 testgame.py -id .
   stage: test
 
 # stages list
