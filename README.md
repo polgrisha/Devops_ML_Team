@@ -6,7 +6,11 @@
 
 ### 1) Requrements:
 Все необходимые зависимости описаны в файлe [requirements.txt](./vm/salt/requirements.txt)
-После установки новых пакетов необходимо зайти в.
+
+После установки новых пакетов необходимо выполнить:
+```shell script
+pip3 freeze > /path/to/requirements.txt
+```
 
 ### 2) DevBox (vagrant + salt)
 Для использования DevBox необходимо выполнить следующие шаги:
@@ -40,3 +44,6 @@ jupyter notebook --ip=0.0.0.0
 ```shell script
 vagrant halt
 ```
+
+### 4) GitLab CI
+Запуск пайплайна с тестированием основных компонент проекта с помощью pytest.
