@@ -9,7 +9,7 @@ testing:
   script:
     - echo running tests...
     - find ~/ -name "pytest"
-    - /env/bin/pytest web-scraper/metrics/preprocessor.py
+    - pytest web-scraper/metrics/preprocessor.py
   stage: test
 
 # stages list
