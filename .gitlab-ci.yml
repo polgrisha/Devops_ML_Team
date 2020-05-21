@@ -1,7 +1,8 @@
 image: python
 
 before_script:
-  - pip install -r /vm/salt/requirements.txt
+  - ls -la
+  - pip install -r ./vm/salt/requirements.txt
 
 # stage for build external libs
 preparing:
