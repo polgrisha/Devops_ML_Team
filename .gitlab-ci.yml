@@ -13,5 +13,4 @@ testing:
 
 # stages list
 stages:
-  - build
   - test
