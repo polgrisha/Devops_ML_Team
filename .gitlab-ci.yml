@@ -8,7 +8,7 @@ before_script:
 testing:
   script:
     - echo running tests...
-    -find ~/ -name "pytest"
+    - find ~/ -name "pytest"
     - /env/bin/pytest web-scraper/metrics/preprocessor.py
   stage: test
 
