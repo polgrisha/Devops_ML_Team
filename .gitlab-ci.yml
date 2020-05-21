@@ -1,0 +1,17 @@
+image: python
+
+stages:
+  - test
+
+before_script:
+  - pip install -r ./vm/salt/requirements.txt
+
+tests:
+  stage: test
+  script:
+    - echo running tests...
+    - pytest ./project/web-scraper/metrics/preprocessor.py \
+      ./project/web-scraper/metrics/metrics.py \
+      ./project/web-scraper/scraper.py \
+      ./project/web-scraper/tests/.
+
