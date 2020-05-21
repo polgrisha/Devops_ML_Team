@@ -7,7 +7,7 @@
 Для использования DevBox необходимо выполнить следующие шаги:
 1. Установить [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 2. Установить vagrant
-3. Образ ОС для `vagrant`:
+3. Образ ОС для [vagrant](https://www.vagrantup.com):
 ```shell script
 vagrant box add ubuntu/bionic64
 ```
