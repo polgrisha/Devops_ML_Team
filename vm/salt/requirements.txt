@@ -1,0 +1,15 @@
+numpy == 1.18.1
+ipython == 7.13.0
+ipykernel == 5.1.4
+jupyter == 1.0.0
+pandas == 1.0.1
+matplotlib == 3.2.0
+scipy == 1.4.1
+
+xlrd == 1.2.0
+
+pytest == 5.4.1
+
+goose3 == 3.1.6 
+vk == 2.0.2
+scrapy == 1.8.0 

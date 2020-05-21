@@ -1,0 +1,1 @@
+{"virtualbox":{"/srv/":{"guestpath":"/srv","hostpath":"/Users/gregorypolyakov/Desktop/HT_BitBucket/ml-team-repo/vm","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/gregorypolyakov/Desktop/HT_BitBucket/ml-team-repo","disabled":false,"__vagrantfile":true}}}
