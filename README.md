@@ -1,7 +1,5 @@
 ## Задание по миникурсу devops для ml репозитория проекта HobbyTaste
 
-Выполнены задания 1), 2), 4)
-
 ### 1) Requrements:
 Все необходимые зависимости описаны в файлe [requirements.txt](./vm/salt/requirements.txt)
 
